@@ -7,13 +7,15 @@ This code lets you write a test, in the form of a series of questions. For each 
 - Multichoice options;
 - The correct answer (either as a string or a function to evaluate it);
 
-This runs in a terminal (usage examples below). You need a NodeJS on the machine.
+This runs in a terminal (usage examples below). You need a Node.js on the machine.
 
 Note that this it is completely intentional to require tests to be specified in a JS and not read from configuration or external file.
 Why? Mostly, because it's fun.
 
 To define a new test, you create a JavaScript file and construct your questions:
 ```
+// If you put your files in a different directory, 
+// adjust the path accordingly
 var q = require('./questionaire_module');
 
 var questions = [];
@@ -33,4 +35,8 @@ questions.push(q3);
 
 // After we prepare all of the questions, simply tell the questionaire_module to run the test
 q.start_test(questions);
+```
+After you compose your questions, you run the program using:
+```
+$ nodejs name_of_your_test.js
 ```
