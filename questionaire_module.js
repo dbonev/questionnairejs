@@ -48,7 +48,11 @@ function ask(question, callback){
 		to_ask = question.E + "\n" + to_ask;
 	}
 	if (question.MC != null){
-		to_ask += "\n" + question.MC;
+		if (question.MC instanceof Array){
+			to_ask += "\n" + question.MC.join("\n");
+		} else {
+			to_ask += "\n" + question.MC;
+		}
 	}
 	to_ask += "\n";
 	
