@@ -54,14 +54,24 @@ function ask(question, callback){
 	
 
 	rl.question(to_ask, function(answer){
-		if (answer === question.A){
+		var is_correct;
+		var answer_is_function = typeof question.A === 'function';
+		if (answer_is_function){
+			is_correct = question.A(answer);
+		} else {
+			is_correct = answer === question.A;
+		}
+		if (is_correct){
 			console.log("Right answer");
 			score++;
 			if (typeof question.on_right === 'function'){
 				question.on_right(answer);
 			}
 		} else {
-			console.log("Wrong answer. The correct one is: " + question.A);
+			console.log("Wrong answer.");
+			if (!answer_is_function){
+				console.log(" The correct one is: " + question.A);
+			}
 			errors++;
 			if (typeof question.on_wrong === 'function'){
 				question.on_wrong(answer);
