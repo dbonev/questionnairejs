@@ -62,6 +62,8 @@ function ask(question, callback){
 		var answer_is_function = typeof question.A === 'function';
 		if (answer_is_function){
 			is_correct = question.A(answer);
+		} else if (question.A instanceof Array){
+			is_correct = question.A.indexOf(answer) > -1;
 		} else {
 			is_correct = answer === question.A;
 		}
